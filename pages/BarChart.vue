@@ -1,19 +1,24 @@
 <template>
-    <div>
-        <h1>Bar Chart</h1>
-        <v-card>
-            <v-card-text>
-                <bar-chart :chartdata='chartdata' :options='options'/>
-            </v-card-text>
-        </v-card>
-    </div>
+    <v-main class='ma-4'>
+        <v-row class='ma-4'>
+            <v-card>
+                <v-card-title>Charts</v-card-title>
+                <v-card-text>
+                    <v-row class='my-4 mx-1'>
+                        <bar-chart :chartdata='barchartdata' :options='options'/>
+                        <line-chart :chartdata='linechartdata' :options='options'/>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-row>
+    </v-main>
 </template>
 
 <script>
 export default {
     data () {
         return {
-            chartdata: {
+            barchartdata: {
                 labels: ['January', 'February'],
                 datasets: [
                     {
@@ -23,20 +28,35 @@ export default {
                     }
                 ]
             },
+            linechartdata: {
+                labels: ['0', '1', '2', '3', '4'],
+                datasets: [
+                    {
+                        label: ['LineData'],
+                        backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+                        data: [0, 10, 20, 0, 50]
+                    }
+                ]
+            },
             options: {
-                maintainAspectRatio: false,
                 scales:{
                     yAxes: [
                         {
                             ticks:{
                                 beginAtZero: true,
-                                min: 0,
-                                max: 50
+                                suggestedMin: 0,
+                                suggestedMax: 50
+                            }
+                        }
+                    ],
+                    xAxes: [
+                        {
+                            scaleLabel:{
                             }
                         }
                     ]
                 }
-            }
+            },
         }
     }
 }

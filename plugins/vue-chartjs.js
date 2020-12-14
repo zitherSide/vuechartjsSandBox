@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Bar } from 'vue-chartjs'
+import { Bar, Line } from 'vue-chartjs'
 
 Vue.component('BarChart', {
     extends: Bar,
@@ -11,7 +11,26 @@ Vue.component('BarChart', {
             type: Object,
             default: () => ({
                 responsive: true,
-                maintainAspectRatio: true
+                maintainAspectRatio: false
+            })
+        }
+    },
+    mounted () {
+        this.renderChart(this.chartdata, this.options)
+    }
+})
+
+Vue.component('LineChart', {
+    extends: Line,
+    props: {
+        chartdata:{
+            type: Object
+        },
+        options: {
+            type: Object,
+            default: () => ({
+                responsive: true,
+                maintainAspectRatio: false
             })
         }
     },
